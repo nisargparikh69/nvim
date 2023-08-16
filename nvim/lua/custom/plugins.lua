@@ -3,6 +3,25 @@ local cmp = require "cmp"
 
 local plugins = {
   {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function() end,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = false,
+    opts = function ()
+      return require "custom.configs.copilot"
+    end,
+    config = function(_, opts)
+      require("copilot").setup(opts)
+    end
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -63,6 +82,14 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
     opts = function()
       local M = require "plugins.configs.cmp"
       M.completion.completeopt = "menu,menuone,noselect"
@@ -70,7 +97,22 @@ local plugins = {
         behavior = cmp.ConfirmBehavior.Insert,
         select = false,
       }
-      table.insert(M.sources, {name = "crates"})
+      M.mapping["<C-j>"] = cmp.mapping(function(_fallback)
+        cmp.mapping.abort()
+        require("copilot.suggestion").accept_line()
+      end, {
+        "i",
+        "s",
+      })
+
+      table.insert(M.sources, {name = "nvim_lsp"} )
+      table.insert(M.sources, {name = "luasnip" })
+      table.insert(M.sources, {name = "buffer" })
+      table.insert(M.sources, {name = "nvim_lua" })
+      table.insert(M.sources, {name = "path" })
+      table.insert(M.sources, {name = "crates" })
+      table.insert(M.sources, {name = "copilot"} )
+
       return M
     end,
   },
