@@ -7,6 +7,13 @@ local plugins = {
     lazy = false,
   },
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = "javascript",
+    opts = function()
+      return require "custom.configs.null-ls"
+    end,
+  },
+  {
     "github/copilot.vim",
     lazy = false,
     config = function() end,
@@ -26,8 +33,21 @@ local plugins = {
     opts = {
       ensure_installed = {
         "rust-analyzer",
+        "quick-lint-js",
       },
     },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "rust-analyzer",
+        "quick-lint-js",
+      },
+    },
+    config = function(_, opts)
+      require("mason-lspconfig").setup(opts)
+    end
   },
   {
     "neovim/nvim-lspconfig",

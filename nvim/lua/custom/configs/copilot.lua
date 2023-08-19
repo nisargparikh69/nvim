@@ -30,6 +30,7 @@ local options = {
   filetypes = {
     yaml = false,
     help = false,
+    markdown = true,
     gitcommit = false,
     gitrebase = false,
     hgcommit = false,
