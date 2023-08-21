@@ -7,6 +7,16 @@ local plugins = {
     lazy = false,
   },
   {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     ft = "javascript",
     opts = function()
@@ -141,6 +151,7 @@ local plugins = {
     opts = function()
       local M = require "plugins.configs.nvimtree"
       M.git.enable = true
+      M.git.ignore = false
       M.renderer.icons.show.git = true
       M.renderer.highlight_opened_files = "icon"
       M.renderer.highlight_modified = "name"
