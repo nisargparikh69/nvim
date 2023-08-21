@@ -1,94 +1,160 @@
-# Set the GPG_TTY to be the same as the TTY, either via the env var
-# or via the tty command.
-if [ -n "$TTY" ]; then
-  export GPG_TTY=$(tty)
-else
-  export GPG_TTY="$TTY"
-fi
-
-# SSH_AUTH_SOCK set to GPG to enable using gpgagent as the ssh agent.
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
-export PATH="/usr/local/bin:/usr/bin"
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:${M2_HOME}/bin:$PATH
+. /usr/local/opt/asdf/libexec/asdf.sh
 
-autoload -Uz compinit && compinit
+#export PATH="/Users/nisargparikh/.asdf/installs/nodejs/12.20.2/bin:/Users/nisargparikh/.asdf/installs/ruby/2.7.2/bin:$PATH"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home"
+export M2_HOME="/Users/nisarg.parikh/Documents/apache-maven-3.8.6"
+export PATH="$PATH:$HOME/depot_tools:$HOME/usr/local/bin/python3:/usr/local/opt/llvm/bin"
+# Node memory
+export NODE_OPTIONS=--max_old_space_size=8192
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/nisarg.parikh/.oh-my-zsh"
+eval "$(pyenv init --path)"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-source "${ZINIT_HOME}/zinit.zsh"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-zinit light ohmyzsh/ohmyzsh
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::rust
-zinit snippet OMZP::command-not-found
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-source $HOME/.profile
-source $HOME/.config/tmuxinator/tmuxinator.zsh
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
-if [ Darwin = `uname` ]; then
-  source $HOME/.profile-macOS
-elif [ Linux = `uname` ]; then
-  source $HOME/.profile-linux
-fi
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-setopt auto_cd
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-#export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$PATH:/home/elliott/Library/flutter/bin"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-alias sudo='sudo '
-export LD_LIBRARY_PATH=/usr/local/lib
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
-# Completions
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-source <(doctl completion zsh)
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-source <(kubectl completion zsh)
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# P10k customizations
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git
+zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vhalt='cd ~/Documents/GitHub/Litigate.Local.Dev/ && vagrant halt &&  cd'
+alias be='bundle exec'
+alias golit='cd ~/Documents/GitHub/litigate && fnm use v12.20.2'
+alias gc='git clone'
+alias startrails='dup && golit && bundle exec spring rails s'
+alias reactclean='golit && rm -rf node_modules && rails assets:clobber && yarn && rails assets:precompile'
+alias golocal='cd ~/Documents/GitHub/Litigate.Local.Dev'
+alias gosanity='cd ~/Documents/Automation.Test.Playwright.Litigate.Sanity'
+alias gosmoke='cd ~/Documents/Automation.Test.Playwright.Litigate'
+alias goweb='cd ~/Documents/rustProject/webrust'
+alias gorust='cd ~/Documents/myrustgit'
+alias webup='~/webup.sh'
+alias webdown='goweb && docker compose stop && killall Docker'
+alias dup='~/dup.sh'
+alias ddown='cd ~/Documents/GitHub/litigate/env/docker/litigate-local && docker compose stop && killall Docker'
+alias qq='golit && COUNT=2 rake resque:workers'
+alias gg='git pull'
+alias gstatus='git status'
+alias gco='git checkout'
+alias gdiff='git diff'
+alias cb='cargo build'
+alias cr='cargo run'
+alias cc='cargo check'
+alias ct='cargo test'
+alias ccp='cargo clippy'
+alias cf='cargo clippy --fix'
+alias cw="cargo watch --ignore 'temp_download/*' -i 'temp_pdf_download/*' -i 'temp_extracted_image/*' -x run"
+alias ml="./meilisearch --master-key="aSampleMasterKey""
+alias gotrans="cd ~/Documents/transactAutomation && fnm use"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Fix for password store
-export PASSWORD_STORE_GPG_OPTS='--no-throw-keyids'
+#source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export NVM_DIR="$HOME/.nvm"                            # You can change this if you want.
-export NVM_SOURCE="/usr/share/nvm"                     # The AUR package installs it to here.
-[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load N
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
+eval "$(starship init zsh)"
 
-[ -s "/home/elliott/.svm/svm.sh" ] && source "/home/elliott/.svm/svm.sh"
+# fnm
+export PATH="/Users/nisarg.parikh/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
 
-# Capslock command
-alias capslock="sudo killall -USR1 caps2esc"
-
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    export MOZ_ENABLE_WAYLAND=1
-fi
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
