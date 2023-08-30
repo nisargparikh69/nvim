@@ -7,6 +7,29 @@ local plugins = {
     lazy = false,
   },
   {
+    "anuvyklack/pretty-fold.nvim",
+    lazy = false,
+    config = function()
+      require("pretty-fold").setup()
+    end
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    config = function()
+      require("hlchunk").setup({
+        blank = {
+        enable = false,
+        }
+      })
+    end
+  },
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
