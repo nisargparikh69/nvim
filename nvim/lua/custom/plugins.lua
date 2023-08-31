@@ -19,14 +19,12 @@ local plugins = {
     opts = {} -- this is equalent to setup({}) function
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
+    "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("hlchunk").setup({
-        blank = {
-        enable = false,
-        }
-      })
+      require("indent_blankline").setup {
+      show_current_context = true,
+      show_current_context_start = true,
+      }
     end
   },
   {
