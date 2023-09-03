@@ -39,7 +39,11 @@ M.crates = {
 }
 M.abc = {
   i = {
-     ["ii"] = { "<ESC>", "escape insert mode" , opts = { nowait = true }}
-  }
+     ["ii"] = { "<ESC>", "escape insert mode" , opts = { nowait = true }},
+     
+  },
+  n = {
+      ["<leader>s"] = { "<cmd> w <CR>", "Save file"},
+  },
 }
 return M
