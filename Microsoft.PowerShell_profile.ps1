@@ -10,7 +10,18 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # New-Alias <alias> <aliased-command>
 New-Alias open ii
-
+function cargorelease {
+   cargo release
+}
+Set-Alias cr cargorelease
+function cargobuild {
+    cargo build
+ }
+Set-Alias cb cargobuild
+function cargocheck {
+    cargo check
+ }
+Set-Alias ccc cargocheck
 function gorust { set-location "$home\Documents\gitrust" }
 # New-Alias -Name gh -Value Get-Help
 function Get-GitPull { & git pull $args }
