@@ -3,7 +3,7 @@
 dynamic_title = false
 dynamic_padding = false
 option_as_alt = "Both"
-# decorations = "none"
+decorations = "none"
 
 
 [scrolling]
@@ -14,7 +14,7 @@ multiplier = 3
 size = 12
 
  [font.normal]
-  family = "Hack Nerd Font"
+  family = "DejaVuSansM Nerd Font"
   style = "Regular"
 
   # [font.offset]
