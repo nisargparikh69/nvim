@@ -190,7 +190,7 @@ vim.keymap.set('n', '<C-k>', '<cmd> TmuxNavigateUp<CR>', { desc = 'Move focus to
 -- Escape insert mode
 vim.api.nvim_set_keymap('i', 'ii', '<Esc>', {noremap = true, silent = true, nowait = true, desc='Escape insert mode'})
 -- Save file
-vim.api.nvim_set_keymap('n', '<C-s>', '<cmd> w <CR>', {noremap = true, silent = true, desc='Save file'})
+vim.api.nvim_set_keymap('n', '<leader>g', '<cmd> w <CR>', {noremap = true, silent = true, desc='Save file'})
 -- nvim-tree toggle
 vim.api.nvim_set_keymap('n', '<C-n>', '<cmd> NvimTreeToggle <CR>', { silent = true, desc='Nvim-Tree Toggle'})
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd> NvimTreeFocus <CR>', { silent = true, desc='Nvim-Tree Focus'})
@@ -291,6 +291,8 @@ require('lazy').setup({
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = 'Toggle Nvim-Tree', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = 'Save file', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -749,7 +751,6 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
   },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
