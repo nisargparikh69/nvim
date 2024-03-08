@@ -194,6 +194,14 @@ vim.api.nvim_set_keymap('n', '<leader>g', '<cmd> w <CR>', {noremap = true, silen
 -- nvim-tree toggle
 vim.api.nvim_set_keymap('n', '<C-n>', '<cmd> NvimTreeToggle <CR>', { silent = true, desc='Nvim-Tree Toggle'})
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd> NvimTreeFocus <CR>', { silent = true, desc='Nvim-Tree Focus'})
+-- Git commit status
+vim.api.nvim_set_keymap('n', '<leader>cm', '<cmd> Telescope git_commits <CR>', { silent = true, desc='Git Commits'})
+vim.api.nvim_set_keymap('n', '<leader>df', '<cmd> Telescope git_status <CR>', { silent = true, desc='Git Status'})
+-- Buffer
+vim.api.nvim_set_keymap('n', '<leader>x', '<Cmd>BufferClose<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>n', '<Cmd>BufferNext<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>p', '<Cmd>BufferPrevious<CR>', {noremap = true})
+
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -293,6 +301,11 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = 'Toggle Nvim-Tree', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = 'Save file', _ = 'which_key_ignore' },
+        ['<leader>cm'] = { name = 'Git Commits', _ = 'which_key_ignore' },
+        ['<leader>df'] = { name = 'Git Status', _ = 'which_key_ignore' },
+        ['<leader>x'] = { name = 'Close Buffer', _ = 'which_key_ignore' },
+        ['<leader>n'] = { name = 'Next Buffer', _ = 'which_key_ignore' },
+        ['<leader>p'] = { name = 'Previous Buffer', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -552,7 +565,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
