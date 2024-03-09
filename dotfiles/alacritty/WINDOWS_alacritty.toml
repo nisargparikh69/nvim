@@ -1,0 +1,160 @@
+[shell]
+program = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+args = [
+    "-NoExit",
+    "-Command",
+    "Set-Location ~\\Documents"
+]
+
+[window]
+dynamic_title = false
+dynamic_padding = false
+# option_as_alt = "Both"
+decorations = "none"
+
+
+[scrolling]
+history = 10_000
+multiplier = 3
+
+[font]
+size = 12
+
+[font.normal]
+family = "CodeNewRoman Nerd Font"
+style = "Regular"
+[font.bold]
+family = "CodeNewRoman Nerd Font"
+style = "Bold"
+[font.italic]
+family = "CodeNewRoman Nerd Font"
+style = "Italic"
+
+  # [font.offset]
+  # x = 0
+  # y = 0
+
+  # [font.glyph_offset]
+  # x = 0
+  # y = 0
+
+[[keyboard.bindings]]
+key = "J"
+mods = "Alt"
+chars = "\u001bj"
+
+[[keyboard.bindings]]
+key = "K"
+mods = "Alt"
+chars = "\u001bk"
+
+[[keyboard.bindings]]
+key = "H"
+mods = "Alt"
+chars = "\u001bh"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Alt"
+chars = "\u001bl"
+
+[[keyboard.bindings]]
+key = "T"
+mods = "Alt"
+chars = "\u001bt"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Alt|Shift"
+chars = "\u001bW"
+
+[[keyboard.bindings]]
+key = "P"
+mods = "Alt"
+chars = "\u001bp"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Alt"
+chars = "\u001bn"
+
+[[keyboard.bindings]]
+key = "D"
+mods = "Alt"
+chars = "\u001bd"
+
+[[keyboard.bindings]]
+key = "E"
+mods = "Alt"
+chars = "\u001be"
+
+[[keyboard.bindings]]
+key = "X"
+mods = "Alt|Shift"
+chars = "\u001bX"
+
+[[keyboard.bindings]]
+key = "F3"
+mods = "None"
+action = "ToggleMaximized"
+
+[colors.primary]
+background = "#282a36"
+foreground = "#f8f8f2"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.search.matches]
+foreground = "#44475a"
+background = "#50fa7b"
+
+[colors.search.focused_match]
+foreground = "#44475a"
+background = "#ffb86c"
+
+# [colors.search.bar]
+# background = "#282a36"
+# foreground = "#f8f8f2"
+
+[colors.hints.start]
+foreground = "#282a36"
+background = "#f1fa8c"
+
+[colors.hints.end]
+foreground = "#f1fa8c"
+background = "#282a36"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.selection]
+text = "CellForeground"
+background = "#44475a"
+
+[colors.normal]
+black = "#21222c"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+
+[colors.bright]
+black = "#6272a4"
+red = "#ff6e6e"
+green = "#69ff94"
+yellow = "#ffffa5"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
+white = "#ffffff"
