@@ -201,6 +201,7 @@ vim.api.nvim_set_keymap('n', '<leader>df', '<cmd> Telescope git_status <CR>', { 
 vim.api.nvim_set_keymap('n', '<leader>x', '<Cmd>BufferClose<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>n', '<Cmd>BufferNext<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>p', '<Cmd>BufferPrevious<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<F5>', ':edit<CR>', {noremap = true})
 
 
 -- [[ Basic Autocommands ]]
