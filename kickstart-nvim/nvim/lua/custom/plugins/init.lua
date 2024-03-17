@@ -7,6 +7,11 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = false,
 	},
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
 	{
     "github/copilot.vim",
     lazy = false,
