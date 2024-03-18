@@ -12,6 +12,13 @@ return {
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
   },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
 	{
     "github/copilot.vim",
     lazy = false,
