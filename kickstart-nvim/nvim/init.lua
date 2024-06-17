@@ -190,7 +190,7 @@ vim.keymap.set('n', '<C-k>', '<cmd> TmuxNavigateUp<CR>', { desc = 'Move focus to
 -- Escape insert mode
 vim.api.nvim_set_keymap('i', 'ii', '<Esc>', {noremap = true, silent = true, nowait = true, desc='Escape insert mode'})
 -- Save file
-vim.api.nvim_set_keymap('n', '<leader>g', '<cmd> w <CR>', {noremap = true, silent = true, desc='Save file'})
+vim.api.nvim_set_keymap('n', '<leader>g', '<cmd> w <CR>', {silent = true, desc='Save file'})
 -- nvim-tree toggle
 vim.api.nvim_set_keymap('n', '<C-n>', '<cmd> NvimTreeToggle <CR>', { silent = true, desc='Nvim-Tree Toggle'})
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd> NvimTreeFocus <CR>', { silent = true, desc='Nvim-Tree Focus'})
@@ -555,11 +555,15 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local on_attach = function(client, bufnr)
+        require "lsp_signature".on_attach(signature_setup, bufnr)
+        -- vim.lsp.inlay_hint.enable(true)
+      end
       local servers = {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -610,6 +614,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
+        'prettier', -- Used to format javascript, typescript, etc.
+        'prettierd', -- Used to format javascript, typescript, etc.
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -621,6 +627,8 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+             -- Include the on_attach function if it's defined in the server configuration 
+            server.on_attach = on_attach           
             require('lspconfig')[server_name].setup(server)
           end,
         },

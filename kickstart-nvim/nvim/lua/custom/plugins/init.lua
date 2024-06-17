@@ -8,6 +8,38 @@ return {
     lazy = false,
 	},
   {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts) require'lsp_signature'.setup(opts) end
+  },
+  {
+  'mrcjkb/rustaceanvim',
+  version = '^4', -- Recommended
+  lazy = false, -- This plugin is already lazy
+  config = function()
+      vim.g.rustaceanvim = {
+      -- Plugin configuration
+      tools = {
+      },
+      -- LSP configuration
+      server = {
+        on_attach = function(client, bufnr)
+          vim.lsp.inlay_hint.enable(true)
+        end,
+        default_settings = {
+          -- rust-analyzer language server configuration
+          ['rust-analyzer'] = {
+          },
+        },
+      },
+      -- DAP configuration
+      dap = {
+      },
+    }
+    end,
+  },
+  {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
