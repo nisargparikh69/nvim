@@ -291,23 +291,23 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+    local wk = require("which-key")
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = 'Toggle Nvim-Tree', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = 'Save file', _ = 'which_key_ignore' },
-        ['<leader>cm'] = { name = 'Git Commits', _ = 'which_key_ignore' },
-        ['<leader>df'] = { name = 'Git Status', _ = 'which_key_ignore' },
-        ['<leader>x'] = { name = 'Close Buffer', _ = 'which_key_ignore' },
-        ['<leader>n'] = { name = 'Next Buffer', _ = 'which_key_ignore' },
-        ['<leader>p'] = { name = 'Previous Buffer', _ = 'which_key_ignore' },
-      }
+     wk.add({
+    { "<leader>c", group = "[C]ode" },
+    { "<leader>d", group = "[D]ocument" },
+    { "<leader>r", group = "[R]ename" },
+    { "<leader>s", group = "[S]earch" },
+    { "<leader>w", group = "[W]orkspace" },
+    { "<leader>t", name = "Toggle Nvim-Tree" }, -- Use 'name' for single mappings
+    { "<leader>g", name = "Save file" },
+    { "<leader>cm", name = "Git Commits" },
+    { "<leader>df", name = "Git Status" },
+    { "<leader>x", name = "Close Buffer" },
+    { "<leader>n", name = "Next Buffer" },
+    { "<leader>p", name = "Previous Buffer" },
+    }, { mode = "n","v" })
     end,
   },
 
