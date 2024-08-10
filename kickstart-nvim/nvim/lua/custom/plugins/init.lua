@@ -181,4 +181,15 @@ return {
     return require('onedark').load()
     end
     },
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    {
+    'rmagatti/goto-preview',
+    event = "BufEnter",
+    config = function()
+      require('goto-preview').setup({
+        default_mappings = true, -- Enable default mappings
+        -- Other configuration options can be specified here
+      })
+    end
+    },
 }
