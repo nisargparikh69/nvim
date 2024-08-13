@@ -170,31 +170,6 @@ return {
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
     },
     {
-    -- Lua Onedark theme
-    "navarasu/onedark.nvim",
-    config = function ()
-    require('onedark').setup {
-        style = 'dark'
-    }
-    end,
-    opts = function()
-    return require('onedark').load()
-    end
-    },
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-    {
-    -- Lua Onedark theme
-    "navarasu/onedark.nvim",
-    config = function ()
-    require('onedark').setup {
-        style = 'dark'
-    }
-    end,
-    opts = function()
-    return require('onedark').load()
-    end
-    },
-    {
     'rmagatti/goto-preview',
     event = "BufEnter",
     config = function()
