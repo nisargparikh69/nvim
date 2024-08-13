@@ -755,23 +755,31 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
+ { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is
-    --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
+    'rebelot/kanagawa.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
+     require('kanagawa').setup({
+      })
+      --vim.g.material_style = "darker" -- darker lighter oceanic palenight deep ocean
+      --vim.cmd [[highlight BufferCurrent guibg=#282c34 guifg=#abb2bf]]
+      --vim.cmd [[highlight TabLineSel guibg=#282c34 guifg=#abb2bf]]
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.o.background = "dark" -- or "light" for light mode
-      vim.cmd([[colorscheme gruvbox]])
-
+      --vim.o.background = "dark" -- or "light" for light mode
+      --vim.opt.termguicolors = true
+      --vim.cmd("highlight LspInlayHint guifg=#949494 ctermfg=245 guibg=None ctermbg=None")
+      --vim.cmd [[highlight Comment gui=none guifg=#FFFFFF]]
       -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
+      -- background
+      -- vim.cmd("hi Normal guibg=000000")
+      vim.cmd 'colorscheme kanagawa-wave' -- kanagawa-dragon
     end,
   },
   -- Highlight todo, notes, etc in comments
