@@ -112,6 +112,33 @@ return {
 		return terminal
 	end,
   	},
+	 {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = function()
+            require("toggleterm").setup{
+               open_mapping = [[<A-h>]],
+               direction = 'horizontal',
+                shell = 'pwsh',
+              on_open = function(term)
+                  local nvimtree_api = require "nvim-tree.api"
+                  local nvimtree_view = require "nvim-tree.view"
+                  if nvimtree_view.is_visible() and term.direction == "horizontal" then
+                      local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
+                      nvimtree_api.tree.toggle()
+                      nvimtree_view.View.width = nvimtree_width
+                      nvimtree_api.tree.toggle(false, true)
+                  end
+             end
+            }
+            function _G.set_terminal_keymaps()
+          local opts = {buffer = 0}
+          vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+          vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+          vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+          end        
+        end
+      },
     {
     'romgrk/barbar.nvim',
     dependencies = {
