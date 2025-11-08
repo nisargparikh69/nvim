@@ -135,7 +135,7 @@ goplat() { cd "$HOME/projects/Platform-Automation"; }
 alias gcl='git clone'
 alias gpr='gh pr checkout'
 alias gco='git checkout'
-alias gg='git pull'
+
 alias gp='git push'
 alias gs='git status'
 alias grh='git reset --hard'
@@ -207,6 +207,9 @@ fi
 if typeset -f _zsh_autosuggest_bind_widgets >/dev/null 2>&1; then
   bindkey '^E' autosuggest-accept
 fi
+
+unalias gg 2>/dev/null
+alias gg='git pull'
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
